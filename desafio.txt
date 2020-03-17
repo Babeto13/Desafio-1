@@ -1,0 +1,39 @@
+#!/usr/bin/python3
+def passwd_check(passwd):
+    """Verifique se a senha é válida.
+
+    Esta função verifica as seguintes condições
+    Se a senha é maior que 7 e menor que 8
+    Se tem pelo menos uma letra maiúscula
+    Se tem pelo menos uma letra minúscula
+    Se tem pelo menos um numeral
+    Se tem algum dos caracteres especiais necessários
+    """
+    SpecialSym=['$','@','#']
+    return_val=True
+    if len(passwd) < 7:
+        print('A senha deve ter pelo menos 7 caracteres')
+        return_val=False
+    if len(passwd) > 8:
+        print('A senha não deve ser maior que 8')
+        return_val=False
+    if not any(char.isdigit() for char in passwd):
+        print('A senha deve ter pelo menos um número')
+        return_val=False
+    if not any(char.isupper() for char in passwd):
+        print('A senha deve ter pelo menos uma letra maiúscula')
+        return_val=False
+    if not any(char.islower() for char in passwd):
+        print('A senha deve ter pelo menos uma letra minúscula')
+        return_val=False
+    if not any(char in SpecialSym for char in passwd):
+        print('A senha deve ter pelo menos um dos símbolos $ @ #')
+        return_val=False
+    if return_val:
+        print('Ok, atende os requisitos para senha forte')
+    return return_val
+passwd = ["#forTe1","senhafraca", "Qu@s1","Voce@Consegue!2019"]
+for senha in passwd:
+    print(f'Validando a senha \n{senha}')
+    passwd_check(senha)
+
